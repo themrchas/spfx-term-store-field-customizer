@@ -8,6 +8,9 @@ import {
 import * as strings from 'TermStoreFieldCustomizerFieldCustomizerStrings';
 import styles from './TermStoreFieldCustomizerFieldCustomizer.module.scss';
 
+import { sp } from '@pnp/sp';
+import { TaxonomyFieldValue } from '@pnp/sp/taxonomy';
+
 /**
  * If your field customizer uses the ClientSideComponentProperties JSON input,
  * it will be deserialized into the BaseExtension.properties object.
@@ -30,7 +33,17 @@ export default class TermStoreFieldCustomizerFieldCustomizer
     Log.info(LOG_SOURCE, 'Activated TermStoreFieldCustomizerFieldCustomizer with properties:');
     Log.info(LOG_SOURCE, JSON.stringify(this.properties, undefined, 2));
     Log.info(LOG_SOURCE, `The following string should be equal: "TermStoreFieldCustomizerFieldCustomizer" and "${strings.Title}"`);
-    return Promise.resolve();
+
+    //Initialize pnpjs to intercat with SharePoint
+        //return Promise.resolve();
+
+        sp.setup({
+          spfxContext: this.context
+        });
+
+        return super.onInit();
+
+
   }
 
   @override
