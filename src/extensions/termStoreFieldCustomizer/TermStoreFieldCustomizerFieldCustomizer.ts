@@ -10,6 +10,8 @@ import styles from './TermStoreFieldCustomizerFieldCustomizer.module.scss';
 
 import { sp } from '@pnp/sp';
 
+import {  stringToColour, fontColorFromBackground } from './utils/color';
+
 //import "@pnp/sp/webs";
 //import "@pnp/sp/lists"
 //import { TaxonomyFieldValue } from '@pnp/sp/taxonomy';
@@ -55,12 +57,62 @@ export default class TermStoreFieldCustomizerFieldCustomizer
   public  onRenderCell(event: IFieldCustomizerCellEventParameters): void {
     // Use this method to perform your custom cell rendering.
 
+
     console.log('onRenderCell event.fieldValue is',event.fieldValue);
+
+    let terms : string[];
+
+    if (event.fieldValue) {
+
+
+      terms = event.fieldValue.reduce((accumulator,currentValue) => {
+
+        console.log('currentValue.Label has color',stringToColour(currentValue.Label));
+        console.log('currentValue.Label has background color',fontColorFromBackground(stringToColour(currentValue.Label)))
+
+      //  let itemToAdd: string = "<h4 className=" + styles.badge + ">" + currentValue + "</h4>"
+
+      //  return accumulator+'; '+currentValue.Label
+
+      accumulator.push(currentValue.Label);
+
+      return accumulator;
+
+
+      },[]);
+
+
+    }
+
+    console.log('terms is ',terms);
+    
 
 
     const text: string = `${this.properties.sampleText}: ${event.fieldValue}`;
 
-    event.domElement.innerText = text;
+    let badges: string = "";
+
+    //Generate badges
+    terms.forEach((item) => {
+
+      let bgColor: string = stringToColour(item);
+      let fontColor: string = fontColorFromBackground(bgColor);
+
+      badges += "<h4 class='"+styles.badge+"' style='background-color:"+bgColor+"; color:"+fontColor+"'>"+item+"</h4>"
+
+
+
+    })
+
+
+
+    //event.domElement.innerText = text;
+    //event.domElement.innerText = badges;
+    event.domElement.innerHTML = badges;
+    //event.domElement.innerText = "Captured terms are "+terms;
+
+  //  console.log('rendered cell is '+event.domElement.innerText);
+
 
     event.domElement.classList.add(styles.cell);
 
@@ -69,6 +121,7 @@ export default class TermStoreFieldCustomizerFieldCustomizer
     const list = sp.web.lists.getByTitle("Documents").select('Title').get().then((titles) => {
 
       console.log('title are',titles);
+      
 
     });
 
@@ -76,6 +129,7 @@ export default class TermStoreFieldCustomizerFieldCustomizer
     const targetList = sp.web.lists.getByTitle("FieldCustomizerTermStore").items.get().then((items) => {
 
       console.log('items are',items);
+
 
     });
     
