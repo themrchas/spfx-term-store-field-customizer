@@ -9,7 +9,10 @@ import * as strings from 'TermStoreFieldCustomizerFieldCustomizerStrings';
 import styles from './TermStoreFieldCustomizerFieldCustomizer.module.scss';
 
 import { sp } from '@pnp/sp';
-import { TaxonomyFieldValue } from '@pnp/sp/taxonomy';
+
+//import "@pnp/sp/webs";
+//import "@pnp/sp/lists"
+//import { TaxonomyFieldValue } from '@pnp/sp/taxonomy';
 
 /**
  * If your field customizer uses the ClientSideComponentProperties JSON input,
@@ -41,19 +44,46 @@ export default class TermStoreFieldCustomizerFieldCustomizer
           spfxContext: this.context
         });
 
+        console.log("spfxContext: this.contxt is", this.context)
+
         return super.onInit();
 
 
   }
 
   @override
-  public onRenderCell(event: IFieldCustomizerCellEventParameters): void {
+  public  onRenderCell(event: IFieldCustomizerCellEventParameters): void {
     // Use this method to perform your custom cell rendering.
+
+    console.log('onRenderCell event.fieldValue is',event.fieldValue);
+
+
     const text: string = `${this.properties.sampleText}: ${event.fieldValue}`;
 
     event.domElement.innerText = text;
 
     event.domElement.classList.add(styles.cell);
+
+    //did not error out
+   // const list = sp.web.lists.getByTitle("Documents");
+    const list = sp.web.lists.getByTitle("Documents").select('Title').get().then((titles) => {
+
+      console.log('title are',titles);
+
+    });
+
+
+    const targetList = sp.web.lists.getByTitle("FieldCustomizerTermStore").items.get().then((items) => {
+
+      console.log('items are',items);
+
+    });
+    
+
+    
+    console.log("list is ",list);
+
+
   }
 
   @override

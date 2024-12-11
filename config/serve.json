@@ -4,12 +4,12 @@
   "https": true,
   "serveConfigurations": {
     "default": {
-      "pageUrl": "https://contoso.sharepoint.com/sites/mySite/SitePages/myPage.aspx",
+      "pageUrl": "https://nshqdev.sharepoint.com/Lists/FieldCustomizerTermStore/AllItems.aspx",
       "fieldCustomizers": {
-        "InternalFieldName": {
+        "termstoreoffice" : {
           "id": "c243fa24-ef51-40ef-8fa3-46d8416d7806",
           "properties": {
-            "sampleText": "Value"
+            "sampleText": "Title is"
           }
         }
       }

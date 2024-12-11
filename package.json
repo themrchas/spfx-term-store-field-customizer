@@ -12,7 +12,11 @@
     "@microsoft/decorators": "~1.4.0",
     "@microsoft/sp-core-library": "~1.4.0",
     "@microsoft/sp-listview-extensibility": "~1.4.0",
+    "@pnp/common": "^1.3.11",
+    "@pnp/logging": "^1.3.11",
+    "@pnp/odata": "^1.3.11",
     "@pnp/sp": "^1.3.11",
+    "@pnp/sp-clientsvc": "^1.3.11",
     "@pnp/sp-taxonomy": "^1.3.11"
   },
   "devDependencies": {

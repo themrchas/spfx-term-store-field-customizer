@@ -4,6 +4,8 @@
 
 Short summary on functionality and used technologies.
 
+https://pnp.github.io/pnpjs/v2/sp/
+
 This branch is the spfx framework configured prior to any cutom development.
 
 ## Used SharePoint Framework Version
