@@ -7,6 +7,8 @@ Short summary on functionality and used technologies.
 https://pnp.github.io/pnpjs/v2/sp/
 https://pnp.github.io/pnpjs/v1/documentation/debugging/
 
+Next step:continue to work on clicking badge and hiding or showing items in view
+
 This branch is the spfx framework configured prior to any cutom development.
 
 ## Used SharePoint Framework Version

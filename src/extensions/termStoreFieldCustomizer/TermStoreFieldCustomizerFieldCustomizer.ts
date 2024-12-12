@@ -115,6 +115,13 @@ export default class TermStoreFieldCustomizerFieldCustomizer
     
     spanElement.innerText = item;
 
+    spanElement.addEventListener('click', ()=> {
+
+      console.log(`Badge clicked: ${item}`);
+      this.filterListItems(item);
+
+    });
+
     rootElement.appendChild(spanElement);
 
 
@@ -168,4 +175,29 @@ export default class TermStoreFieldCustomizerFieldCustomizer
     // call ReactDOM.unmountComponentAtNode() here.
     super.onDisposeCell(event);
   }
+
+
+  private filterListItems(badge: string): void {
+
+    const listItems:NodeList = document.querySelectorAll(`.${styles.TermStoreFieldCustomizer} .${styles.badge}`);
+
+    console.log('filterListItems: aquerySelectorAll returned ',listItems)
+
+   // for( item:Element of listItems) {
+    //listItems.forEach((badge: HTMLElement) => {
+    for (let i:number; i < listItems.length; i++) {
+
+       console.log('filterListItems: badge is',badge);
+    
+
+    /*    const listItem = badge.closest('.list-item-class'); // Adjust the selector to match your list item class
+        if (badge.innerText === label) {
+            listItem.style.display = 'block';
+        } else {
+            listItem.style.display = 'none';
+        }
+          */
+    };
+}
+    
 }
