@@ -92,29 +92,50 @@ export default class TermStoreFieldCustomizerFieldCustomizer
 
     let badges: string = "";
 
+    const rootElement: HTMLDivElement = document.createElement('div');
+    rootElement.className = styles.TermStoreFieldCustomizer;
+
+
     //Generate badges
-    terms.forEach((item) => {
+    terms.forEach((item: string, index: number) => {
 
       let bgColor: string = stringToColour(item);
       let fontColor: string = fontColorFromBackground(bgColor);
 
-      badges += "<h4 class='"+styles.badge+"' style='background-color:"+bgColor+"; color:"+fontColor+"'>"+item+"</h4>"
+     // badges += "<span class='"+styles.badge+"' style='background-color:"+bgColor+"; color:"+fontColor+"'>"+item+"</span>"
+    // badges += `<span class="${styles.TermStoreFieldCustomizer} ${styles.badge}" style="background-color:${bgColor}; color:${fontColor}">${item}</span>`
+
+    const spanElement: HTMLSpanElement = document.createElement('span');
+    spanElement.className = styles.badge;
+    spanElement.style.backgroundColor = bgColor;
+    spanElement.style.color = fontColor;
+
+    if (index > 0)
+      spanElement.style.marginLeft = "10px";
+    
+    spanElement.innerText = item;
+
+    rootElement.appendChild(spanElement);
+
+
+
+   // event.domElement.appendChild(spanElement);
 
 
 
     })
 
+    event.domElement.appendChild(rootElement);
 
 
-    //event.domElement.innerText = text;
-    //event.domElement.innerText = badges;
-    event.domElement.innerHTML = badges;
+
+    /*   event.domElement.innerHTML = badges;   */
     //event.domElement.innerText = "Captured terms are "+terms;
 
   //  console.log('rendered cell is '+event.domElement.innerText);
 
 
-    event.domElement.classList.add(styles.cell);
+    /*  event.domElement.classList.add(styles.cell);  */
 
     //did not error out
    // const list = sp.web.lists.getByTitle("Documents");

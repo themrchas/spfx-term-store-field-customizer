@@ -5,6 +5,7 @@
 Short summary on functionality and used technologies.
 
 https://pnp.github.io/pnpjs/v2/sp/
+https://pnp.github.io/pnpjs/v1/documentation/debugging/
 
 This branch is the spfx framework configured prior to any cutom development.
 

@@ -1,14 +1,16 @@
 .TermStoreFieldCustomizer {
+
   .cell {
     background-color: "[theme:themePrimary, default:#e5e5e5]";
-    display: 'inline-block';
+    display: inline-block;
+    font-size: 20px;
   }
 
   .badge {
     
-      display: "inline-block";
-      min-width: "10px";
-      padding: "3px 7px";
+      display: inline-block;
+      min-width: 10px;
+      padding: 3px 7px;
       font-size: 1em;
       font-weight: bold;
       line-height: 1;
@@ -22,3 +24,4 @@
 
   }
 }
+
